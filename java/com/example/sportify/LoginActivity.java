@@ -19,11 +19,10 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static android.media.session.MediaSession.*;
+import static com.example.sportify.utils.NetworkUtils.TOKEN;
 import static com.example.sportify.utils.NetworkUtils.LogIn;
 import static com.example.sportify.utils.NetworkUtils.generateLoginURL;
-import static com.example.sportify.utils.NetworkUtils.generategetAllWorkoutURL;
-import static com.example.sportify.utils.NetworkUtils.getAllWorkout;
+
 
 public class LoginActivity extends AppCompatActivity {
     private EditText login, password;
@@ -39,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(URL... urls) {
             String res = null;
             String str = null;
-            //String[] information = getInformation();
             try {
                 res = LogIn(urls[0], log, pass);
             } catch (IOException | JSONException e) {
@@ -56,8 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String res) {
             if (!res.contains("Not Found")) {
-                String token = getResources().getString(R.string.token);
-                token = res;
+                TOKEN = res;
                 Intent Choice_train = new Intent(".MainActivity");
                 startActivity(Choice_train);
 
@@ -89,6 +86,15 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         URL generatedURL = generateLoginURL();
                         new task().execute(generatedURL);
+                    }
+                }
+        );
+        register.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent Registration = new Intent(".Registration");
+                        startActivity(Registration);
                     }
                 }
         );

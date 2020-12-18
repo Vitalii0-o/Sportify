@@ -21,11 +21,12 @@ import java.net.URL;
 
 public class NetworkUtils extends AppCompatActivity {
 
-    public static final String Sportify_BASE_URL = "http://192.168.1.4:6000/api/";
+    public static final String Sportify_BASE_URL = "http://192.168.43.156:6000/api/";
     public static final String LOGIN = "auth/login";
     public static final String REGISTER = "auth/register";
     public static final String WORKOUT = "workout/?=";
     public static final String PROFILE = "profile/update";
+    public static String TOKEN = "";
 
 
     public static URL generateLoginURL(){
@@ -222,15 +223,15 @@ public class NetworkUtils extends AppCompatActivity {
             Log.i("JSON", "urlConnection.disconnect()");
         }
     }
-    public static String updateProfile(URL url, String name, String age, String weight, String token) throws IOException, JSONException {
+    public static String updateProfile(URL url, String name, String age, String weight, String email, String password) throws IOException, JSONException {
 
 
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
-            Log.i("JSON token", token);
+            Log.i("JSON token", TOKEN);
             //urlConnection.setDoOutput(true);
             //urlConnection.setDoInput(true);
-            urlConnection.setRequestProperty("Authorization", token);
+            urlConnection.setRequestProperty("Authorization", TOKEN);
             urlConnection.setRequestMethod("PATCH");
             urlConnection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
             urlConnection.setRequestProperty("Accept","application/json");
@@ -242,6 +243,8 @@ public class NetworkUtils extends AppCompatActivity {
             update.put("name",name);
             update.put("age", age);
             update.put("weight", weight);
+            update.put("email",email);
+            update.put("password",password);
             Log.i("JSON", update.toString());
             OutputStream os=urlConnection.getOutputStream();
             BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
@@ -252,6 +255,7 @@ public class NetworkUtils extends AppCompatActivity {
             os.close();
             StringBuilder sb = new StringBuilder();
             int HttpResult = urlConnection.getResponseCode();
+            Log.i("JSON", String.valueOf(HttpResult));
             if (HttpResult == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader(urlConnection.getInputStream(), "utf-8"));

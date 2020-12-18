@@ -17,7 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sportify"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Registration"></activity>
+        <activity android:name=".Training">
+            <intent-filter>
+                <action android:name=".Training" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,16 +38,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddNewTrain">
+        <activity android:name=".Registration">
             <intent-filter>
-                <action android:name=".AddNewTrain" />
+                <action android:name=".Registration" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Choice_train">
+        <activity android:name=".AddNewTrain">
             <intent-filter>
-                <action android:name=".Choice_train" />
+                <action android:name=".AddNewTrain" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

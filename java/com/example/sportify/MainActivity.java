@@ -23,24 +23,25 @@ import static com.example.sportify.utils.NetworkUtils.generateUpdateProfileURL;
 import static com.example.sportify.utils.NetworkUtils.updateProfile;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText newName, newAge, newWeight;
+    private EditText newName, newAge, newWeight, newEmail, newPassword;
     private TextView  profileName, profileAge;
     private Button editProfile, edit, startTrain;
 
     class task extends AsyncTask<URL, Void, String> {
 
 
-        String token = getResources().getString(R.string.token);
+
         String name = newName.getText().toString();
         String age = newAge.getText().toString();
         String weight = newWeight.getText().toString();
+        String email = newEmail.getText().toString();
+        String password = newPassword.getText().toString();
         @Override
         protected String doInBackground(URL... urls) {
             String res = null;
-            Log.i("JSON token", token);
             Log.i("JSON token", "111111111111");
             try {
-                res = updateProfile(urls[0], name, age, weight, token);
+                res = updateProfile(urls[0], name, age, weight, email, password);
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         newName = (EditText)findViewById(R.id.new_name);
         newWeight = (EditText)findViewById(R.id.new_weight);
         newAge = (EditText)findViewById(R.id.new_age);
+        newEmail = (EditText)findViewById(R.id.new_email);
+        newPassword = (EditText)findViewById(R.id.new_password);
         edit = (Button)findViewById(R.id.edit);
         startTrain = (Button)findViewById(R.id.start_train);
         editProfile = (Button)findViewById(R.id.edit_profile);
@@ -79,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                         newName.setVisibility(View.INVISIBLE);
                         newAge.setVisibility(View.INVISIBLE);
                         newWeight.setVisibility(View.INVISIBLE);
+                        newEmail.setVisibility(View.INVISIBLE);
+                        newPassword.setVisibility(View.INVISIBLE);
                         edit.setVisibility(View.INVISIBLE);
 
                     }
@@ -100,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                         newName.setVisibility(View.VISIBLE);
                         newAge.setVisibility(View.VISIBLE);
                         newWeight.setVisibility(View.VISIBLE);
+                        newEmail.setVisibility(View.VISIBLE);
+                        newPassword.setVisibility(View.VISIBLE);
                         edit.setVisibility(View.VISIBLE);
 
                     }
