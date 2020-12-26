@@ -1,8 +1,13 @@
 package com.example.sportify;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.net.UrlQuerySanitizer;
 import android.os.AsyncTask;
@@ -35,12 +40,14 @@ import static com.example.sportify.utils.NetworkUtils.getAllWorkout;
 
 public class TrainList extends AppCompatActivity {
     private TextView trainsList;
-    private Button start, addNewTrain;
+    private Button start1, start2, start3, start4,  delete1,  delete2,  delete3,  delete4,addNewTrain;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_list);
+
         trains_list_onCreate();
 
 
@@ -50,18 +57,92 @@ public class TrainList extends AppCompatActivity {
 
 
     public void trains_list_onCreate(){
-        trainsList = (TextView)findViewById(R.id.textView7);
-        start = (Button)findViewById(R.id.start_curent_train);
+        start1 = (Button)findViewById(R.id.start_curent_train1);
+        start2 = (Button)findViewById(R.id.start_curent_train2);
+        start3 = (Button)findViewById(R.id.start_curent_train3);
+        start4 = (Button)findViewById(R.id.start_curent_train4);
+        delete1 = (Button)findViewById(R.id.delete_curent_train1);
+        delete2 = (Button)findViewById(R.id.delete_curent_train2);
+        delete3 = (Button)findViewById(R.id.delete_curent_train3);
+        delete4 = (Button)findViewById(R.id.delete_curent_train4);
         addNewTrain = (Button)findViewById(R.id.add_new_train);
-        start.setOnClickListener(
+        start1.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
                         Intent Training = new Intent(".Training");
+                        Training.putExtra("name", "Отжымания");
                         startActivity(Training);
+                    }
+                }
+        );
+        start2.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
+                        Intent Training = new Intent(".Training");
+                        Training.putExtra("name", "Подтягивания");
+                        startActivity(Training);
+                    }
+                }
+        );
+        start3.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
+                        Intent Training = new Intent(".Training");
+                        Training.putExtra("name", "Упражнения на прес");
+                        startActivity(Training);
+                    }
+                }
+        );
+        start4.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent Training = new Intent(".Training");
+                        Training.putExtra("name", "Приседания");
+                        startActivity(Training);
+                    }
+                }
+        );
+        delete1.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        LinearLayout ll = (LinearLayout)findViewById(R.id.linearLayout1);
+                        ll.setVisibility(View.GONE);
+                    }
+                }
+        );
+        delete2.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        LinearLayout ll = (LinearLayout)findViewById(R.id.linearLayout2);
+                        ll.setVisibility(View.GONE);
+                    }
+                }
+        );
+        delete3.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        LinearLayout ll = (LinearLayout)findViewById(R.id.linearLayout3);
+                        ll.setVisibility(View.GONE);
+                    }
+                }
+        );
+        delete4.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        LinearLayout ll = (LinearLayout)findViewById(R.id.linearLayout4);
+                        ll.setVisibility(View.GONE);
                     }
                 }
         );

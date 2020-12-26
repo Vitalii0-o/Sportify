@@ -41,3 +41,15 @@ public class AddNewTrain extends AppCompatActivity {
 
     }
 }
+class First {
+  private int a;
+  private int b;
+ private void doSomething() {//скрытый метод
+     b+= a;
+
+ }
+
+ public int getSomething() { //открытый метод
+     return a;
+ }
+}

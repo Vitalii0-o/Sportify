@@ -223,14 +223,13 @@ public class NetworkUtils extends AppCompatActivity {
             Log.i("JSON", "urlConnection.disconnect()");
         }
     }
-    public static String updateProfile(URL url, String name, String age, String weight, String email, String password) throws IOException, JSONException {
+    public static String updateProfile(URL url, String name, String age, String weight) throws IOException, JSONException {
 
 
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             Log.i("JSON token", TOKEN);
-            //urlConnection.setDoOutput(true);
-            //urlConnection.setDoInput(true);
+
             urlConnection.setRequestProperty("Authorization", TOKEN);
             urlConnection.setRequestMethod("PATCH");
             urlConnection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
@@ -243,8 +242,6 @@ public class NetworkUtils extends AppCompatActivity {
             update.put("name",name);
             update.put("age", age);
             update.put("weight", weight);
-            update.put("email",email);
-            update.put("password",password);
             Log.i("JSON", update.toString());
             OutputStream os=urlConnection.getOutputStream();
             BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
